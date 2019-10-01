@@ -55,11 +55,11 @@ class MarcoCliente extends JFrame {
 	}
 }// -------------------------------------------------------------**
 
-// ----------------------------------Envio de seÒal onlain
+// ----------------------------------Envio de se√±al onlain
 
-// Clase para ejecutar una orden en cuanto se abre la ventana de ejecuciÛn
+// Clase para ejecutar una orden en cuanto se abre la ventana de ejecuci√≥n
 class EnvioOnline extends WindowAdapter {
-	// MÈtodo que permitir· ejecutar una orden en cuando se abra la ventana
+	// M√©todo que permitir√° ejecutar una orden en cuando se abra la ventana
 
 	public void windowOpened(WindowEvent e) {
 
@@ -84,7 +84,7 @@ class EnvioOnline extends WindowAdapter {
 	}
 }// ---------------------------------------------------------------------------**
 
-//--------------------------------------------CreaciÛn de los elementos de la ventana
+//--------------------------------------------Creaci√≥n de los elementos de la ventana
 class LaminaMarcoCliente extends JPanel implements Runnable {
 
 	// private String IpServer;
@@ -126,19 +126,19 @@ class LaminaMarcoCliente extends JPanel implements Runnable {
 		EnviaTexto miEvento = new EnviaTexto();
 		miboton.addActionListener(miEvento);
 		add(miboton);
-		// ----BotÛn de start
+		// ----Bot√≥n de start
 		btn_start = new JButton("Audio");
 		EnviarAudio EnvioAudio = new EnviarAudio();
 		btn_start.addActionListener(EnvioAudio);
 		add(btn_start);
 		// -----**
-		// -------BotÛn Stop
+		// -------Bot√≥n Stop
 		btn_stop = new JButton("Detener");
 		StopAudio PararAudio = new StopAudio();
 		btn_stop.addActionListener(PararAudio);
 		add(btn_stop);
 		// --------**
-		// -------BotÛn escucha
+		// -------Bot√≥n escucha
 		btn_escucha = new JButton("Escuchar");
 		Escuchar esc = new Escuchar();
 		btn_escucha.addActionListener(esc);
@@ -148,13 +148,13 @@ class LaminaMarcoCliente extends JPanel implements Runnable {
 		mihilo.start();
 	}// -------------------------------------------------------**
 
-	// ----------------------------------Acciones del botÛn START
+	// ----------------------------------Acciones del bot√≥n START
 	private class EnviarAudio implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			System.out.println("iniciando botÛn start...");
+			System.out.println("iniciando bot√≥n start...");
 			iniciar_audio();
 		}
 	}// ----------------------------------------------------**
@@ -165,7 +165,7 @@ class LaminaMarcoCliente extends JPanel implements Runnable {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			System.out.println("iniciando botÛn de detener...");
+			System.out.println("iniciando bot√≥n de detener...");
 			Cliente.calling = false;
 			btn_start.setEnabled(true);
 			btn_stop.setEnabled(false);
@@ -178,7 +178,7 @@ class LaminaMarcoCliente extends JPanel implements Runnable {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			System.out.println("Iniciado botÛn de escuchar...");
+			System.out.println("Iniciado bot√≥n de escuchar...");
 			iniciar_sonido();
 		}
 	}// ----------------------------------------------------**
@@ -194,7 +194,8 @@ class LaminaMarcoCliente extends JPanel implements Runnable {
 			try {
 				// ****************Instrucciones de socket que estaban en localhost, ahora
 				// selecciona una ip concreta
-				Socket miSocket = new Socket(ip.getSelectedItem().toString(), 9999);
+				//-------Correcci√≥n de envio de datos, el error estaba en el puerto (estaba en 9999)
+				Socket miSocket = new Socket(ip.getSelectedItem().toString(), 9090);
 
 				Paquete datos = new Paquete();
 				// SE envia el nombre al atributo nick capturado del TextArea
@@ -271,7 +272,7 @@ class LaminaMarcoCliente extends JPanel implements Runnable {
 		}
 	}// ------------------------------------------------------------------**
 	
-		// -----------------------------------------MÈtodo para encender sonido
+		// -----------------------------------------M√©todo para encender sonido
 	public void iniciar_sonido() {
 
 		try {
@@ -324,7 +325,7 @@ class LaminaMarcoCliente extends JPanel implements Runnable {
 
 				if (!paqueteRecibido.getMensaje().equals(" online")) {
 
-					// Se imprime la informaciÛn obtenida por atributos
+					// Se imprime la informaci√≥n obtenida por atributos
 					campochat.append("\n" + paqueteRecibido.getNick() + ": " + paqueteRecibido.getMensaje());
 
 				} else {
